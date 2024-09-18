@@ -22,7 +22,7 @@
 
   gtag('config', 'G-TJWQVZ7CSM');
 </script>
-
+    <title class="notranslate"><?=get_bloginfo('site_title')?></title>
 
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">

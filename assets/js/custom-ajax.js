@@ -116,6 +116,7 @@ jQuery(document).ready(function($) {
     });
     $('.filter__btns-type').on('change', function() { 
         $('.filter__btns-type_second').val('')
+
         loadPosts(currentPostType, selectedTags); // Reload posts with ACF field filters
     });
     $('.filter__btns-type_second').on('change', function() {
@@ -172,7 +173,6 @@ jQuery(document).ready(function($) {
         let max_price = $('.max_price').val();
         let min_price = $('.min_price').val();
         let mob = false;
-        
         if (window.innerWidth <= 990) {
             mob = true;
 			property_status = property_status_mob;
@@ -182,8 +182,8 @@ jQuery(document).ready(function($) {
 			min_price = $('.min_price_mob').val();
 			max_price = $('.max_price_mob').val();
         }
-		console.log('acf-category='+acf_category);
-		console.log('acf-cat-mob='+acf_category_mob);
+		// console.log('acf-category='+acf_category);
+		// console.log('acf-cat-mob='+acf_category_mob);
 
         $.ajax({
             url: ajax_params.ajax_url,
@@ -196,7 +196,7 @@ jQuery(document).ready(function($) {
                 acf_category_mob: acf_category_mob,
                 property_status: property_status,
                 property_status_mob: property_status_mob,
-                property_stype: property_stype.length > 0 ? property_stype : property_stype_second,
+                property_stype: property_stype,
                 bedrooms: bedrooms,
                 max_price: parseInt(max_price),
                 min_price: parseInt(min_price),
@@ -204,7 +204,7 @@ jQuery(document).ready(function($) {
                 paged : more
             },
             success: function(response) {
-				console.log(response.data.requiest);
+				// console.log(response.data.requiest);
                 if (response.success) {
                     destroyCarousel(); // Destroy existing Slick slider
                     $('#post-container').empty().html(response.data.posts); // Clear and update the post container
@@ -278,7 +278,7 @@ function checkField(name, text) {
 
 
 jQuery('form .main-btn').on('click', function (e) {
-	console.log(validForm());
+	// console.log(validForm());
     if (validForm()) {
         window.MINDALL_CRM.init(
             '8a0d54a2-56eb-4e98-8b08-9532a2233828',

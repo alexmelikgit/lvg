@@ -120,7 +120,7 @@ get_header('');
                 </div>
             </div>
             <div class="services__grid-item">
-                <img src="<?= get_template_directory_uri() ?>/assets/img/about/services_4.png" alt="services" width="790" height="404">
+                <img src="<?= get_template_directory_uri() ?>/assets/img/about/full-shot-couple-talking-real-estate-agent.jpg" alt="services" width="790" height="404">
                 <div class="services__grid-item-content services__grid-item-content__img_4">
                     <span class="block-title text--regular"><?= $about_us_page_selecting_title; ?></span>
                     <ul>
@@ -155,9 +155,9 @@ foreach( $my_posts as $post ){
     setup_postdata( $post );
     $page_id = $post -> ID;
     ?>
-            <a href="#" class="info__card">
+            <div class="info__card">
                 <?php the_post_thumbnail(); ?>
-            </a>
+            </div>
 <?php  }
 wp_reset_postdata(); // сброс
 ?>

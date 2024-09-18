@@ -39,7 +39,7 @@ function lvg_setup()
 		* hard-coded <title> tag in the document head, and expect WordPress to
 		* provide it for us.
 		*/
-    add_theme_support('title-tag');
+//    add_theme_support('title-tag');
 
     /*
 		* Enable support for Post Thumbnails on posts and pages.
@@ -144,12 +144,14 @@ add_action('widgets_init', 'lvg_widgets_init');
  */
 function lvg_scripts()
 {
+    wp_enqueue_style('fancybox',get_theme_file_uri('assets/css/fancybox.css'), [], '1.0.0');
     wp_enqueue_style('lvg-theme-normalize', get_template_directory_uri() . '/assets/css/normalize.css');
     wp_enqueue_style('lvg-theme-style', get_template_directory_uri() . '/assets/css/style.css');
     wp_enqueue_style('lvg-theme-slick', get_template_directory_uri() . '/assets/css/slick.css');
     wp_enqueue_style('lvg-vars-all-min', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
     wp_enqueue_style('lvg-vars-select', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css');
 
+    wp_enqueue_script('fancybox', get_theme_file_uri('assets/js/fancybox.umd.js'), [], '1.0.0');
     wp_enqueue_script('lvg-jqeury', 'https://code.jquery.com/jquery-3.6.0.min.js', array(), '3.6.0', true);
     wp_enqueue_script('lvg-mindall-crm', 'https://cdn.jsdelivr.net/gh/mindallcrm/form-integration/dist/inject.js', array(), '3.0.0', true);
     wp_enqueue_script('lvg-jqeury-min', 'https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js', array(), '3.6.0', true);
@@ -956,7 +958,7 @@ function filter_posts()
         ];
     	}
 	}else{
-		if (!empty($property_stype_data) && $property_stype_data === 'all') {
+		if (!empty($property_stype_data) && $property_stype_data !== 'all') {
         $args['meta_query'][] = [
             'key' => 'property_stype',
             'value' => $property_stype_data,
@@ -1047,7 +1049,7 @@ function filter_posts()
                             </div>
                         </div>
                         <div class="product-card__footer">
-                            <div class="product-card__footer-price">from AED <?= esc_html($price) ?></div>
+                            <div class="product-card__footer-price">from AED <?= number_format((float)$price, 0) ?></div>
                             <div class="product-card__footer-social">
                                 <a href="#">
                                     <img src="<?= esc_url(get_template_directory_uri()) ?>/assets/img/intro_phone.svg" alt="intro_phone" width="36" height="36">
@@ -1070,7 +1072,7 @@ function filter_posts()
     }
 
     $posts_html = ob_get_clean();
-    wp_send_json_success(['posts' => $posts_html, 'post_count' => $query_result->post_count,  'array' => $posts_array, 'requiest' => $paged]);
+    wp_send_json_success(['posts' => $posts_html, 'post_count' => $query_result->found_posts,  'array' => $posts_array, 'requiest' => $paged]);
 
     wp_die();
 }

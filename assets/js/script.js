@@ -707,16 +707,21 @@ const hero_list_alt = document.querySelector(".hero__list--alt");
 
 if (filters_filter_dekstop) {
   filters_filter_dekstop.addEventListener("click", function () {
-    amenities_group.classList.toggle("active");
-    filters_filter_dekstop.classList.toggle("active");
-    // Toggle the button text
-    console.log(filters_filter_dekstop.innerText);
+    if(filters_filter_dekstop.classList.contains('active')){
+      filters_filter_dekstop.classList.remove('active')
+      amenities_group.classList.remove('active')
+    }else{
+      filters_filter_dekstop.classList.add('active')
+      amenities_group.classList.add('active')
+
+    }
     if (filters_filter_dekstop.innerText === "HIDE ALL FILTERS") {
       filters_filter_dekstop.innerText = "Show all filters";
     } else {
       filters_filter_dekstop.innerText = "HIDE ALL FILTERS";
     }
   });
+
 }
 
 if (off_plan_Btn) {
@@ -872,6 +877,25 @@ $(".js-example-js-example-basic-single").on(
     $searchfield.prop("disabled", true);
   }
 );
+$('[multiple]').each(function(){
+  $(this).on('select2:select', (e)=>{
+    if(e.params.data.element.hasAttribute('data-all')){
+      $(this).find('option').prop('selected', true);
+      $(this).trigger('change')
+      return;
+    }
+
+    if($(this).find('option:not(:selected)').length <= 1){
+      $(this).find('option[data-all]').prop('selected', true);
+      $(this).trigger('change')
+    }
+
+  })
+  $(this).on('select2:unselect', (e)=>{
+    $(this).find('option[data-all]').prop('selected', false);
+    $(this).trigger('change')
+  })
+})
 
 document.addEventListener("DOMContentLoaded", function () {
   var lastScrollTop = 0;
@@ -1035,15 +1059,14 @@ if (fileInput_2) {
 // console.log(selectResidential);
 // console.log(selectCommercial);
 document.addEventListener('DOMContentLoaded', function () {
-  $('.js-example-basic-single').on('change', function () {
-    console.log('test1');
+  $('.js-example-basic-single').on('change', function (e) {
     let selectResidential = document.querySelectorAll('.select-residential');
     let selectCommercial = document.querySelectorAll('.select-сommercial');
     // Проверяем наличие элементов, прежде чем работать с их классами
     if (selectResidential && selectCommercial) {
-      console.log($(this).val());
       if ($(this).val() === 'commercial') {
         // Если выбран вариант "Commercial", добавляем класс active к selectCommercial
+        console.log(selectCommercial)
         selectResidential.forEach(item => {
           item.classList.remove('active');
         })
@@ -1064,12 +1087,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
   $('.filter__btns-btn-status').on('click', function () {
-    console.log('test');
     let selectResidential = document.querySelectorAll('.select-residential');
     let selectCommercial = document.querySelectorAll('.select-сommercial');
     // Проверяем наличие элементов, прежде чем работать с их классами
     if (selectResidential && selectCommercial) {
-      console.log($(this).val());
       if ($(this).data('status') === 'commercial') {
         // Если выбран вариант "Commercial", добавляем класс active к selectCommercial
         selectResidential.forEach(item => {
@@ -1136,7 +1157,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
   });
 });
-
+Fancybox.bind();
 // /* 11 days */
 
 // document.addEventListener('DOMContentLoaded', (event) => {

@@ -45,7 +45,7 @@ get_header();
                         <?= $after_title_text_buy_rent; ?>
                     </span>
                 </div>
-                <span class="property-container__price">AED <?= $buy_rent_price; ?></span>
+                <span class="property-container__price">AED <?= number_format($buy_rent_price); ?></span>
             </div>
         </div>
     </section>
@@ -61,7 +61,7 @@ get_header();
                             <?= $after_title_text_buy_rent; ?>
                         </span>
                 </div>
-                <span class="property-container__price text--black">AED <?= $buy_rent_price; ?></span>
+                <span class="property-container__price text--black">AED <?= number_format($buy_rent_price); ?></span>
             </div>
             <div class="property__icon-group">
                 <div class="property__icon-group-content">
@@ -104,7 +104,7 @@ get_header();
                 <?php $tags = get_tags(); ?>
                 <?php foreach ( $tags as $tag ) { ?>
                     <div class="features__list-item">
-                        <!--<?php echo tag_description($tag->term_id);?>-->
+                        <?php echo tag_description($tag->term_id);?>
                         <span class="main-text"><?php echo $tag->name; ?></span>
                     </div>
                 <?php } ?>
@@ -126,9 +126,12 @@ get_header();
                 <button type="button" class="property-location-btn" data-location="restaurants">Restaurants</button>
                 <button type="button" class="property-location-btn" data-location="metro-stations">Metro Stations</button>
             </div>
+            <?php
+            $cords = explode(',', get_field('geopoints'))
 
+            ?>
             <div id="map" class="location-map">
-                <iframe class="location_iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.126044850566!2d55.15394027520808!3d25.097594277775183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6b43d5cfeb55%3A0x625c793d7f78c700!2sConcord%20Tower!5e0!3m2!1sen!2skg!4v1712901025385!5m2!1sen!2skg" width="500" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe class="location_iframe" src="https://maps.google.com/maps?q=<?=$cords[1]?>,<?=$cords[0]?>&hl=es&z=14&amp;output=embed" width="500" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>

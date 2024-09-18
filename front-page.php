@@ -168,7 +168,7 @@ get_header('');
                 <li class="hero__list-item main-text hero__list-item-select">
                     <span class="main-text cstm-h">Bedrooms</span>
                     <select class="js-example-js-example-basic-single filter__btns-rooms select-bedrooms" name="states[]" multiple="multiple" data-placeholder="All types">
-                        <option selected value="all">All types</option>
+                        <option selected value="all" data-all >All types</option>
                         <option value="studio">Studio</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -180,21 +180,21 @@ get_header('');
                         <option value="7+">7+</option>
                     </select>
                 </li>
-                <li class="hero__list-item--alt-minmax main-text-liel">
+                <li class="hero__list-item--alt-minmax main-text-liel ">
                     <span class="main-text cstm-h">Price</span>
-                    <div class="hero__list-item-price hero__list-item-price--alt">
-                        <span>MAX</span>
-                        <input type="number" class="max_price max_price_mob" >
-                        <span class="text--opacity">AED</span>
+                    <div class="minmax-wrapper">
+                        <div class="hero__list-item-price hero__list-item-price--alt">
+                            <span>MIN</span>
+                            <input type="number" class="min_price min_price_mob" >
+                            <span class="text--opacity">AED</span>
+                        </div>
+                        <div class="hero__list-item-price hero__list-item-price--alt ">
+                            <span class="">MAX</span>
+                            <input type="number" class="max_price max_price_mob" >
+                            <span class="text--opacity">AED</span>
+                        </div>
                     </div>
-                </li>
-                <li class="hero__list-item--alt-minmax main-text-liel">
-                    <span class="main-text cstm-h" style="opacity: 0;">Price</span>
-                    <div class="hero__list-item-price hero__list-item-price--alt">
-                        <span>MIN</span>
-                        <input type="number" class="min_price min_price_mob" >
-                        <span class="text--opacity">AED</span>
-                    </div>
+
                 </li>
             </ul>
         </div>
@@ -224,7 +224,7 @@ get_header('');
                 reset all filters
             </button>
         </div>
-        <div class="amenities__group desc-filters-adv">
+        <div class="amenities__group desc-filters-adv active">
             <span class="main-text margin-bottom margin-top">Amenities</span>
             <div>
                 <div class="product__btns">
@@ -411,7 +411,7 @@ wp_reset_postdata(); // сброс
     <div class="container">
         <div class="location-index__title-group">
             <h2 class="main-title">Our Office Location</h2>
-            <span class="main-text">Office 704, Thuraya Tower, Al Barsha South (TECOM), Dubai UAE</span>
+            <span class="main-text">Office 704, Thuraya Telecommunications Tower, Barsha Heights (TECOM), Dubai, UAE</span>
         </div>
         <div class="location-index-grid">
             <!-- <iframe class="location_iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.119546755036!2d55.153619975208095!3d25.097814277774976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6b4164e9f477%3A0x873c65b1c9eb0f7e!2zQ29uY29yZCBUb3dlciAtIEFsIFN1Zm91aCAtIEFsIFN1Zm91aCAyIC0gRHViYWkgLSDQntCx0YrQtdC00LjQvdC10L3QvdGL0LUg0JDRgNCw0LHRgdC60LjQtSDQrdC80LjRgNCw0YLRiw!5e0!3m2!1sru!2skg!4v1712041629893!5m2!1sru!2skg&language=en" width="500" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->

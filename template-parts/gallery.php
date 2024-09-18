@@ -59,7 +59,9 @@ ob_start();
                 }
             ?>
                 <div class="slider-nav-property__slide">
-                    <img class="thumbnail-slide" src="<?= $image_url ?>" alt="<?= $image_alt ?>" width="<?= $image_width ?>" height="<?= $image_height ?>">
+                    <a href="<?=$image_url?>" data-fancybox="fancybox">
+                        <img class="thumbnail-slide" src="<?= $image_url ?>" alt="<?= $image_alt ?>" width="<?= $image_width ?>" height="<?= $image_height ?>">
+                    </a>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -84,12 +86,6 @@ document.addEventListener('DOMContentLoaded', function() {
         modalImg.src = src;
     }
 
-    document.querySelectorAll('.image-slide, .thumbnail-slide').forEach(function(img) {
-        img.style.cursor = "pointer";
-        img.onclick = function() {
-            openModal(this.src);
-        }
-    });
 
     closeModal.onclick = function() {
         modal.style.display = "none";

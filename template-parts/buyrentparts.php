@@ -13,7 +13,7 @@
                 <ul class="hero__list-ul hero__list--dekstop">
                     <li class="hero__list-item main-text text--white hero__list-item-select">
                         <span class="hero__list-item-title">Category</span>
-                        <select class="js-example-basic-single filter__btns-select-category" name="state" >
+                        <select class="js-example-basic-single filter__btns-select-category" name="state">
                             <option value="all" data-status="all"  class="filter__btns-btn-status active">All</option>
                             <option value="residental" data-category="residental" class="filter__btns-btn-category">Residential</option>
                             <option value="commercial" data-category="commercial" class="filter__btns-btn-category">Commercial</option>
@@ -22,15 +22,15 @@
                     <li class="hero__list-item main-text text--white hero__list-item-select">
                         <span class="hero__list-item-title">Property status</span>
                         <select class="js-example-js-example-basic-single filter__btns-btn-status-page active-desc" name="states[]" multiple="multiple" data-placeholder="All">
-                            <option value="all" data-status="all"  class="filter__btns-btn-status active">All</option>
+                            <option value="all" data-status="all" data-all class="filter__btns-btn-status active">All</option>
                             <option value="primary" data-status="primary"  class="filter__btns-btn-status">Primary</option>
                             <option value="secondary" data-status="secondary"  class="filter__btns-btn-status">Secondary</option>
                         </select>
                     </li>
                     <li class="hero__list-item main-text text--white hero__list-item-select select-residential active">
                         <span class="hero__list-item-title">Property type</span>
-                        <select class="js-example-js-example-basic-single filter__btns-type" name="states[]" multiple="multiple" data-placeholder="Apartment">
-                            <option value="all">All</option>
+                        <select class="js-example-js-example-basic-single filter__btns-type" data-placeholder="Apartment">
+                            <option value="all" >All</option>
                             <option value="appartment">Apartment</option>
                             <option value="villa">Villa</option>
                             <option value="townhouse">Townhouse</option>
@@ -44,8 +44,8 @@
                     </li>
                     <li class="hero__list-item main-text text--white hero__list-item-select select-сommercial">
                         <span class="hero__list-item-title">Property type</span>
-                        <select class="js-example-js-example-basic-single filter__btns-type_second" name="states[]" multiple="multiple" data-placeholder="office">
-                            <option value="all">All</option>
+                        <select class="js-example-js-example-basic-single filter__btns-type_second"data-placeholder="office">
+                            <option value="all" >All</option>
                             <option value="office space ">Office Space</option>
                             <option value="rentail">Retail</option>
                             <option value="warehouse">Warehouse</option>
@@ -63,7 +63,7 @@
                     <li class="hero__list-item main-text text--white hero__list-item-select">
                         <span class="hero__list-item-title">Bedrooms</span>
                         <select class="js-example-js-example-basic-single filter__btns-rooms" name="states[]" multiple="multiple" data-placeholder="All types">
-                            <option value="1">All types</option>
+                            <option value="1" data-all>All types</option>
                             <option value="Studio">Studio</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -109,7 +109,7 @@
             <ul class="hero__list hero__list--alt">
                 <li class="hero__list-item main-text hero__list-item-select hero__list-item-select--alt">
                     <span class="hero__list-item-title">Category</span>
-                    <select class="js-example-basic-single filter__btns-select-category_mob" name="state" >
+                    <select class="js-example-basic-single filter__btns-select-category_mob" name="state">
 						<option value="all">All</option>
                         <option value="residentail">Residential</option>
                         <option value="commercial">Commercial</option>
@@ -118,14 +118,14 @@
                 <li class="hero__list-item main-text hero__list-item-select hero__list-item-select--alt">
                     <span class="hero__list-item-title">Property status</span>
                     <select class="js-example-js-example-basic-single filter__btns-select-status" name="states[]" multiple="multiple" data-placeholder="Primary">
-                        <option value="all">All</option>
+                        <option value="all" data-all>All</option>
                         <option value="primary">Primary</option>
                         <option value="secondary">Secondary</option>
                     </select>
                 </li>
-                <li class="hero__list-item main-text hero__list-item-select hero__list-item-select--alt select-residential active select-stype">
+                <li class="hero__list-item main-text hero__list-item-select hero__list-item-select--alt select-residential active select-stype" >
                     <span class="hero__list-item-title">Property type</span>
-                    <select class="js-example-js-example-basic-single filter__btns-type_mob" name="states[]" multiple="multiple" data-placeholder="Apartment">
+                    <select class="js-example-js-example-basic-single filter__btns-type_mob" data-placeholder="Apartment">
                             <option value="all">All</option>
                             <option value="appartment">Apartment</option>
                             <option value="villa">Villa</option>
@@ -140,8 +140,8 @@
                 </li>
                 <li class="hero__list-item main-text hero__list-item-select hero__list-item-select--alt select-сommercial select-stype">
                     <span class="hero__list-item-title">Property type</span>
-                    <select class="js-example-js-example-basic-single filter__btns-type_mob" name="states[]" multiple="multiple" data-placeholder="office">
-                            <option value="all">All</option>
+                    <select class="js-example-js-example-basic-single filter__btns-type_mob" data-placeholder="office">
+                            <option value="all" data-all>All</option>
                             <option value="office space ">Office Space</option>
                             <option value="rentail">Retail</option>
                             <option value="warehouse">Warehouse</option>
@@ -159,7 +159,7 @@
                 <li class="hero__list-item main-text hero__list-item-select hero__list-item-select--alt">
                     <span class="hero__list-item-title">Bedrooms</span>
                     <select class="js-example-js-example-basic-single select-bedrooms" name="states[]" multiple="multiple" data-placeholder="All types">
-                            <option value="1">All types</option>
+                            <option value="1" data-all>All types</option>
                             <option value="Studio">Studio</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -174,22 +174,22 @@
                 <li class="hero__list-item--alt main-text-liel">
                     <span>Price</span>
                     <div class="hero__list-item-price hero__list-item-price--alt dropdown--alt">
-                        <span>MAX</span>
-                        <input type="number" class='max_price_mob'>
+                        <span>MIN</span>
+                        <input type="number" class='min_price_mob'>
                         <span class="text--opacity">AED</span>
                     </div>
                 </li>
                 <li class="hero__list-item--alt main-text-liel">
                     <span></span>
                     <div class="hero__list-item-price hero__list-item-price--alt dropdown--alt">
-                        <span>MIN</span>
-                        <input type="number" class='min_price_mob'>
+                        <span>MAX</span>
+                        <input type="number" class='max_price_mob'>
                         <span class="text--opacity">AED</span>
                     </div>
                 </li>
             </ul>
         </div>
-        <div class="amenities__group">
+        <div class="amenities__group active">
             <span class="main-text margin-bottom margin-top">Amenities</span>
             <div>
                 <div class="product__btns">
@@ -230,8 +230,8 @@
         </div>
 
         <div class="product__filters">
-            <button class="product__filters-item product__filters-filter product__filters-filter-dekstop main-text text--medium text--uppercase">
-                Hide all filters
+            <button class="product__filters-item product__filters-filter product__filters-filter-dekstop main-text text--medium text--uppercase active">
+                Show all filters
             </button>
             <button class="product__filters-item product__filters-reset off_plan__filter-reset product__filters-filter-dekstop main-text text--medium text--uppercase">
                 reset all filters
