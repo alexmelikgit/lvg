@@ -89,7 +89,6 @@ function handle_update_posts()
 
         // Преобразование JSON в ассоциативный массив
         $dataCRM = json_decode($json, true);
-
         foreach ($dataCRM['data'] as $value) {
             $id_crm_post = findArray($value, 'id');
             $ulr_crm = findArray($value['media'], 'url');
@@ -98,10 +97,7 @@ function handle_update_posts()
             $bath_crm = findArray($value, 'bathrooms');
             $area_crm = findArray($value, 'weighted');
             $desc_crm = findArray($value, 'text');
-            $reference_crm = $value['rera'] ?: '';
-            if($reference_crm === 'LVG-D-044'){
-                wp_die();
-            }
+            $reference_crm = findArray($value,'rera') ?: '';
             $city_crm = findArray($value, 'city');
             $urls_crm = urls_string($value['media']['pictures']);
             $geo_crm = findArray($value, 'lng') . ',' . findArray($value, 'lat');
@@ -138,14 +134,54 @@ function handle_update_posts()
                 $price_array = findArray($value, 'price');
                 $price_crm = $price_array['price'];
             }
-			
+
 			if ($market === "primary") {
-				if (isset($post_data['post_type']) && is_array($post_data['post_type'])) {
-					$post_data['post_type'][] = 'off-plan'; 
-				} else {
-					$post_data['post_type'] = array('off-plan');
-				}
-			}
+                $existing_post_id_offplan = get_posts(array(
+                    'meta_key' => 'crmID',
+                    'meta_value' => $id_crm_post,
+                    'post_type' => 'offplan',
+                ));
+
+                if (!empty($existing_post_id_offplan)) {
+                    $post_data['ID'] = $existing_post_id_offplan[0]->ID;
+                    $update_post_id = wp_update_post($post_data);
+                    $insert_tags = wp_set_post_tags($update_post_id, findArray($value, 'amenities'));
+                    update_field('buy_rent_price', $price_crm, $update_post_id);
+                    update_field('beds', $bed_crm, $update_post_id);
+                    update_field('baths', $bath_crm, $update_post_id);
+                    update_field('property_area', $area_crm, $update_post_id);
+                    update_field('buy_rent_description', $desc_crm, $update_post_id);
+                    update_field('location_buy_rent', $city_crm, $update_post_id);
+                    update_field('qr_code_dld_permit_text', $reference_crm, $update_post_id);
+                    update_field('image_url_list', $urls_crm, $update_post_id);
+                    update_field('thumbnail_url', $ulr_crm, $update_post_id);
+                    update_field('geopoints', $geo_crm, $update_post_id);
+                    update_field('property_status', $market, $update_post_id);
+                    update_field('property_stype', $category, $update_post_id);
+                    update_field('bedrooms', $bed_crm, $update_post_id);
+                    update_field('price', $price_crm, $update_post_id);
+                    update_field('acf_category', 'all', $update_post_id);
+                } else {
+                    $update_post_id = wp_insert_post($post_data, false, true);
+                    $insert_tags = wp_set_post_tags($update_post_id, findArray($value, 'amenities'));
+                    $add_id_post_meta = add_post_meta($update_post_id, 'crmID', findArray($value, 'id'));
+                    update_field('buy_rent_price', $price_crm, $update_post_id);
+                    update_field('beds', $bed_crm, $update_post_id);
+                    update_field('baths', $bath_crm, $update_post_id);
+                    update_field('property_area', $area_crm, $update_post_id);
+                    update_field('buy_rent_description', $desc_crm, $update_post_id);
+                    update_field('location_buy_rent', $city_crm, $update_post_id);
+                    update_field('qr_code_dld_permit_text', $reference_crm, $update_post_id);
+                    update_field('image_url_list', $urls_crm, $update_post_id);
+                    update_field('thumbnail_url', $ulr_crm, $update_post_id);
+                    update_field('geopoints', $geo_crm, $update_post_id);
+                    update_field('property_status', $market, $update_post_id);
+                    update_field('property_stype', $category, $update_post_id);
+                    update_field('bedrooms', $bed_crm, $update_post_id);
+                    update_field('price', $price_crm, $update_post_id);
+                    update_field('acf_category', 'all', $update_post_id);
+                }
+            }
 
 
 

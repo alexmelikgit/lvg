@@ -40,7 +40,7 @@ $team_member_whatsapp = get_field("team_member_whatsapp", $page_id);
                             <a href="mailto:<?= $team_member_email; ?>">
                                 <img src="<?= get_template_directory_uri() ?>/assets/img/about/mail.svg" alt="mail" width="36" height="36">
                             </a>
-                            <a href="wa.me/<?= $team_member_whatsapp; ?>">
+                            <a href="https://wa.me/<?= $team_member_whatsapp; ?>">
                                 <img src="<?= get_template_directory_uri() ?>/assets/img/about/whatsapp.svg" alt="whatsapp" width="36" height="36">
                             </a>
                         </div>

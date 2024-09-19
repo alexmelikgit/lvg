@@ -67,26 +67,29 @@ $vacancies_send_your_resume_description = get_field("vacancies_send_your_resume_
         <span class="section__desc main-text">
             <?= $vacancies_send_your_resume_description; ?>
           </span>
-        <form class="contacts__footer" action="#">
-            <div class="contacts__footer-content">
-                <div class="contacts__footer-field">
-                    <input type="text" required autocomplete="on">
-                    <img class="contacts__footer-field-img" src="<?= get_template_directory_uri() ?>/assets/img/vacancies/input_name.png" alt="photo" width="419" height="66">
+        <form action="<?php echo site_url();?>/thanks" class="contacts-index__footer formemail ajax-form buy_page_form" id="book_crm_form" method="POST" enctype="multipart/form-data">
+            <div class="form_fields" >
+                <div class="contacts-index__footer-field">
+                    <input type="text" name="client_last_name" placeholder="Last name">
+                    <img class="contacts-index__footer-field-img" src="https://lvgrealestatedubai.com/wp-content/uploads/2024/08/last_name.png" alt="photo" width="419" height="66">
                 </div>
-                <div class="contacts__footer-field">
-                    <input type="email" class="email" required autocomplete="on">
-                    <img class="contacts__footer-field-img" src="<?= get_template_directory_uri() ?>/assets/img/vacancies/input_email.png" alt="photo" width="419" height="66">
+                <div class="contacts-index__footer-field">
+                    <input type="text" name="client_name" placeholder="Name">
+                    <img class="contacts-index__footer-field-img" src="https://lvgrealestatedubai.com/wp-content/uploads/2024/08/name.png" alt="photo" width="419" height="66">
                 </div>
-                <div class="contacts__footer-field">
-                    <input type="tel" class="tel" id="phone-input" placeholder="+971 (___) __-__-__" required autocomplete="on">
-                    <img class="contacts__footer-field-img" src="<?= get_template_directory_uri() ?>/assets/img/vacancies/input_phone.png" alt="photo" width="419" height="66">
+                <!-- Add a hidden input field to indicate form submission -->
+                <div class="contacts-index__footer-field">
+                    <input type="email" name="client_email" class="email" placeholder="E-mail" autocomplete="on" required="">
+                    <img class="contacts-index__footer-field-img" src="https://lvgrealestatedubai.com/wp-content/themes/lvg/assets/img/input_form_emal.png" alt="photo" width="419" height="66">
                 </div>
+                <div class="contacts-index__footer-field">
+                    <input type="number" name="client_phone" id="tel" placeholder="971 (___) __-__-__" autocomplete="on" required="" style="position:relative; z-index:2">
+                    <img class="contacts-index__footer-field-img" src="https://lvgrealestatedubai.com/wp-content/themes/lvg/assets/img/input_form_phone.png" alt="photo" width="419" height="66">
+                </div>
+
             </div>
-            <div class="contacts__footer-attach-btn main-btn">
-                <input type="file" class="fileInput" id="fileInput_2">
-                <label for="fileInput_2" class="main-btn-label">Attach file</label>
-            </div>
-            <button type="submit" data-modal-id="lw-ok-modal" class="main-btn form-btn contacts__footer-content-submit">Submit application</button>
+
+            <button type="submit" data-modal-id="lw-ok-modal" class="main-btn">Submit Request</button>
         </form>
     </div>
 </section>

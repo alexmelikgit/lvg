@@ -880,19 +880,28 @@ $(".js-example-js-example-basic-single").on(
 $('[multiple]').each(function(){
   $(this).on('select2:select', (e)=>{
     if(e.params.data.element.hasAttribute('data-all')){
+
       $(this).find('option').prop('selected', true);
       $(this).trigger('change')
+      $(this).parent().addClass('selected-all')
       return;
     }
 
     if($(this).find('option:not(:selected)').length <= 1){
       $(this).find('option[data-all]').prop('selected', true);
       $(this).trigger('change')
+      $(this).parent().removeClass('selected-all');
     }
 
   })
   $(this).on('select2:unselect', (e)=>{
-    $(this).find('option[data-all]').prop('selected', false);
+    if(e.params.data.element.hasAttribute('data-all')){
+      $(this).find('option[data-all]').prop('selected', false);
+      $(this).find('option').prop('selected', false);
+    }else{
+      $(this).find('option[data-all]').prop('selected', false);
+    }
+    $(this).parent().removeClass('selected-all');
     $(this).trigger('change')
   })
 })

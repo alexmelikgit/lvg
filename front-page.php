@@ -132,9 +132,9 @@ get_header('');
                         <option id="secoMob" value="secondary">Secondary</option>
                     </select>
                 </li>
-                <li class="hero__list-item main-text hero__list-item-select  select-residential active select-stype">
+                <li class="hero__list-item main-text hero__list-item-select  select-residential active select-stype property-select">
                     <span class="main-text cstm-h">Property type</span>
-                    <select class="js-example-js-example-basic-single filter__btns-type" name="states[]" multiple="multiple" data-placeholder="Property type">
+                    <select class="js-example-js-example-basic-single filter__btns-type" data-placeholder="Property type">
                         <option selected value="all">All</option>
                         <option value="apartment">Apartment</option>
                         <option value="villa">Villa</option>
@@ -147,9 +147,9 @@ get_header('');
                         <option value="half-floor">Half Floor</option>
                     </select>
                 </li>
-                <li class="hero__list-item main-text hero__list-item-select select-сommercial select-stype">
+                <li class="hero__list-item main-text hero__list-item-select select-сommercial select-stype property-select">
                     <span class="main-text cstm-h">Property type</span>
-                    <select class="js-example-js-example-basic-single filter__btns-type_second" name="states[]" multiple="multiple" data-placeholder="office">
+                    <select class="js-example-js-example-basic-single filter__btns-type_second" data-placeholder="office">
                         <option selected value="all">All</option>
                         <option value="office-space ">Office Space</option>
                         <option value="rental">Retail</option>
@@ -224,7 +224,7 @@ get_header('');
                 reset all filters
             </button>
         </div>
-        <div class="amenities__group desc-filters-adv active">
+        <div class="amenities__group desc-filters-adv active tablet-active">
             <span class="main-text margin-bottom margin-top">Amenities</span>
             <div>
                 <div class="product__btns">

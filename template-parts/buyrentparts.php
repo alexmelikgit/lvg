@@ -172,7 +172,7 @@
                     </select>
                 </li>
                 <li class="hero__list-item--alt main-text-liel">
-                    <span>Price</span>
+                    <span class="price-title">Price</span>
                     <div class="hero__list-item-price hero__list-item-price--alt dropdown--alt">
                         <span>MIN</span>
                         <input type="number" class='min_price_mob'>
@@ -180,7 +180,7 @@
                     </div>
                 </li>
                 <li class="hero__list-item--alt main-text-liel">
-                    <span></span>
+                    <span class="price-title"></span>
                     <div class="hero__list-item-price hero__list-item-price--alt dropdown--alt">
                         <span>MAX</span>
                         <input type="number" class='max_price_mob'>
@@ -189,7 +189,7 @@
                 </li>
             </ul>
         </div>
-        <div class="amenities__group active">
+        <div class="amenities__group active tablet-active">
             <span class="main-text margin-bottom margin-top">Amenities</span>
             <div>
                 <div class="product__btns">
