@@ -99,12 +99,7 @@
 
 <section class="section--margin-bottom product">
     <div class="container">
-        <div class="off_plan__filteres-header">
-            <button class="product__filters-item product__filters-filter product-off_plan__filter-btn main-text text--medium text--uppercase">
-                hide
-            </button>
-        </span>
-        </div>
+
         <div class="hero__content">
             <ul class="hero__list hero__list--alt">
                 <li class="hero__list-item main-text hero__list-item-select hero__list-item-select--alt">
@@ -188,6 +183,11 @@
                     </div>
                 </li>
             </ul>
+        </div>
+        <div class="off_plan__filteres-header">
+            <button class="product__filters-item product__filters-filter product-off_plan__filter-btn main-text text--medium text--uppercase">
+                Filter
+            </button>
         </div>
         <div class="amenities__group active tablet-active">
             <span class="main-text margin-bottom margin-top">Amenities</span>

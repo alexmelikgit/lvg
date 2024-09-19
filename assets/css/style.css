@@ -1159,19 +1159,38 @@ img {
 }
 
 @media (max-width: 543px) {
-  .hero__list--alt .hero__list-item, .hero__list--alt .hero__list-item--alt {
+  .hero__list--alt .hero__list-item {
     flex: 1 1 170px;
     max-width: 100%;
+  }
+  .hero__list--alt .hero__list-item--alt{
+    width: calc(50% - 10px);
   }
   .hero__list--alt .hero__list-item--alt .hero__list-item-price--alt.dropdown--alt{
     justify-content: space-between;
   }
+
+}
+@media (max-width: 391px) {
   .hero__list--alt .hero__list-item--alt .hero__list-item-price--alt input{
-    flex: 1;
-    max-width: calc(100% - 65px);
+    max-width: 85px;
+  }
+  .hero__list--alt .hero__list-item--alt{
+    width: calc(50% - 10px);
+  }
+  .hero__list--alt .hero__list-item--alt .hero__list-item-price--alt.dropdown--alt{
+    justify-content: space-between;
   }
 }
-
+@media (max-width: 345px) {
+  .hero__list--alt .hero__list-item--alt .hero__list-item-price--alt input {
+    max-width: calc(100% - 65px);
+    flex: 1;
+  }
+  .hero__list--alt .hero__list-item--alt{
+    width: 100%;
+  }
+}
 .hero-btns-group {
   display: flex;
   gap: 24px;
@@ -1375,7 +1394,6 @@ font-size: 20px;
 
 .hero__list-item--alt, .hero__list-item--alt-minmax input {
   border: none;
-  width: 100%;
   height: 20px;
   padding: 3px;
   background-color: transparent;

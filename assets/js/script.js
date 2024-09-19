@@ -743,16 +743,16 @@ if (off_plan_Btn) {
       off_plan_filter_reset.classList.toggle("active");
     }
     if (hero_list_alt) {
-      hero_list_alt.classList.toggle("active");
+      // hero_list_alt.classList.toggle("active");
     }
 
-    if (off_plan_Btn.textContent.trim() === "hide") {
-      off_plan_Btn.textContent = "FILTER";
+    if (off_plan_Btn.textContent.trim() === "Filter") {
+      off_plan_Btn.textContent = "Hide";
       // Здесь можно добавить код для смены языка на русский
     } else if (off_plan_Btn.textContent.trim() === "Advanced Filter") {
       // Если текущий текст кнопки уже "Advanced Filter", не изменяем его
     } else {
-      off_plan_Btn.textContent = "hide";
+      off_plan_Btn.textContent = "Filter"
       // Здесь можно добавить код для смены языка на английский
     }
   });
