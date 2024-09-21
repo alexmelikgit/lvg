@@ -104,7 +104,9 @@ get_header();
                 <?php $tags = get_tags(); ?>
                 <?php foreach ( $tags as $tag ) { ?>
                     <div class="features__list-item">
-                        <?php echo tag_description($tag->term_id);?>
+                        <?php if($icon = get_field('icon', "post_tag_$tag->term_id")) :?>
+                            <img src="<?=$icon['url']?>" alt="<?=$icon['alt'] ?: $tag->name?>">
+                        <?php endif ;?>
                         <span class="main-text"><?php echo $tag->name; ?></span>
                     </div>
                 <?php } ?>

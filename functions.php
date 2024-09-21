@@ -1356,3 +1356,74 @@ function insert_update_realty_posts($properties)
 // Ensure the fetch_realty_data, parse_realty_data, and insert_update_realty_posts functions are defined here as well.
 
 // work with API end 
+
+add_action('admin_init', 'handle_tag_icons');
+function handle_tag_icons()
+{
+    $_POST['errors'] = [];
+    if($_POST['tags_icons'] ?? false){
+        if(preg_match('/zip/', $_FILES['file']['type'])){
+            $zip = new ZipArchive();
+            if($zip->open($_FILES['file']['tmp_name'])){
+
+                for($i=0; $i<$zip->numFiles; $i++){
+                    $name = $zip->getNameIndex($i);
+                    insert_icon_to_tag($zip->getFromName($name), $name);
+                }
+
+            }
+        }else{
+            insert_icon_to_tag(file_get_contents($_FILES['file']['tmp_name']),$_FILES['file']['name']);
+        }
+
+    }
+}
+function insert_icon_to_tag($filecontent, $name){
+    $tag = explode('.', $name);
+    $tag = $tag[0];
+    $tag = get_term_by('name', $tag, 'post_tag');
+    $_POST['tag_icon_results']['success'] = 0;
+    if($tag){
+        if($oldimage = get_field('icon', "post_tag_$tag->term_id")){
+            wp_delete_attachment($oldimage['ID'], true);
+        }
+        $upload_file = wp_upload_bits($name, null, $filecontent);
+        if (!$upload_file['error']) {
+            $wp_filetype = wp_check_filetype($name, null);
+            $attachment = array(
+                'post_mime_type' => $wp_filetype['type'],
+                'post_parent' => null,
+                'post_title' => preg_replace('/\.[^.]+$/', '', $name),
+                'post_content' => '',
+                'post_status' => 'inherit'
+            );
+            $attachment_id = wp_insert_attachment($attachment, $upload_file['file']);
+            if (!is_wp_error($attachment_id)) {
+                require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+                $attachment_data = wp_generate_attachment_metadata($attachment_id, $upload_file['file']);
+                wp_update_attachment_metadata($attachment_id, $attachment_data);
+                update_field("icon", $attachment_id, "post_tag_$tag->term_id");
+                $_POST['tag_icon_results']['success']++;
+            }
+        }
+    }else{
+        $_POST['tag_icon_results']['errors'][] = $name;
+    }
+}
+add_filter( 'manage_edit-post_tag_columns', 'my_manage_edit_category_columns' );
+function my_manage_edit_category_columns( $columns ) {
+    array_splice($columns, 2,0, ['icon' => "Icon"]);
+    unset($columns['description']);
+    return $columns;
+}
+add_filter( 'manage_post_tag_custom_column', 'my_manage_category_custom_column', 10, 3 );
+function my_manage_category_custom_column( $content, $column_name, $term_id ) {
+    switch ( $column_name ) {
+        case 'icon':
+            $icon = get_field('icon', "post_tag_$term_id");
+            $content = "<img style='width: 25px; height: auto' src='$icon[url]'>";
+            break;
+    }
+
+    return $content;
+}

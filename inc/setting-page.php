@@ -56,6 +56,18 @@ function custom_settings_page_html()
             <input type="hidden" name="update_posts" value="true">
             <?php submit_button('Обновить посты'); ?>
         </form>
+        <h1>Импортировать иконки тэгов</h1>
+        <form action="" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required accept="application/zip, image/jpeg , image/*">
+            <input type="hidden" name="tags_icons" value="true">
+            <?php submit_button('Импортировать иконки'); ?>
+        </form>
+        <?php if($_POST['tag_icon_results']['success']):?>
+            <p style="color: limegreen">Uploaded files(<?=$_POST['tag_icon_results']['success']?>)</p>
+        <?php endif ; ?>
+        <?php foreach ($_POST['tag_icon_results']['errors'] ?? [] as $error) :?>
+            <p style="color: red">Not found tag with name -> <?=$error?></p>
+        <?php endforeach;?>
     </div>
 <?php
 }
@@ -98,6 +110,7 @@ function handle_update_posts()
             $area_crm = findArray($value, 'weighted');
             $desc_crm = findArray($value, 'text');
             $reference_crm = findArray($value,'rera') ?: '';
+            $reference = findArray($value,'reference') ?: '';
             $city_crm = findArray($value, 'city');
             $urls_crm = urls_string($value['media']['pictures']);
             $geo_crm = findArray($value, 'lng') . ',' . findArray($value, 'lat');
@@ -119,8 +132,6 @@ function handle_update_posts()
                 'meta_value' => $id_crm_post,
                 'post_type' => $p_type,
             ));
-			
-
             $post_data = [
                 'post_title' => findArray($value, 'title'),
                 'post_content' => findArray($value, 'text'),
@@ -161,7 +172,14 @@ function handle_update_posts()
                     update_field('bedrooms', $bed_crm, $update_post_id);
                     update_field('price', $price_crm, $update_post_id);
                     update_field('acf_category', 'all', $update_post_id);
+                    update_field('reference', $reference, $update_post_id);
+
                 } else {
+//                    if(empty($existing_post_id)){
+//                        $update_post_id = wp_insert_post($post_data, false, true);
+//                    }else{
+//                        $update_post_id = $existing_post_id[0]->ID;
+//                    }
                     $update_post_id = wp_insert_post($post_data, false, true);
                     $insert_tags = wp_set_post_tags($update_post_id, findArray($value, 'amenities'));
                     $add_id_post_meta = add_post_meta($update_post_id, 'crmID', findArray($value, 'id'));
@@ -180,6 +198,8 @@ function handle_update_posts()
                     update_field('bedrooms', $bed_crm, $update_post_id);
                     update_field('price', $price_crm, $update_post_id);
                     update_field('acf_category', 'all', $update_post_id);
+                    update_field('reference', $reference, $update_post_id);
+
                 }
             }
 
@@ -190,6 +210,7 @@ function handle_update_posts()
                 $update_post_id = wp_update_post($post_data);
                 $insert_tags = wp_set_post_tags($update_post_id, findArray($value, 'amenities'));
             } else {
+
                 $update_post_id = wp_insert_post($post_data, false, true);
                 $insert_tags = wp_set_post_tags($update_post_id, findArray($value, 'amenities'));
                 $add_id_post_meta = add_post_meta($update_post_id, 'crmID', findArray($value, 'id'));
@@ -210,13 +231,13 @@ function handle_update_posts()
             update_field('bedrooms', $bed_crm, $update_post_id);
             update_field('price', $price_crm, $update_post_id);
             update_field('acf_category', 'all', $update_post_id);
-			
+            update_field('reference', $reference, $update_post_id);
         }
-
         // Сообщение об успешном обновлении
         add_action('admin_notices', 'custom_admin_notice');
     }
 }
+
 
 
 function custom_admin_notice()

@@ -1123,15 +1123,21 @@ img {
     row-gap: 30px;
   }
   .hero__list-item--alt-minmax .minmax-wrapper .hero__list-item-price{
-    flex: 1 1 125px;
+    width: calc(50% - 20px);
     justify-content: space-between;
   }
   .hero__list-item--alt-minmax .minmax-wrapper .hero__list-item-price input{
     flex: 1;
+    display: inline-block;
     max-width: calc(100% - 65px);
   }
 }
-
+@media (max-width: 340px) {
+  .hero__list-item--alt-minmax .minmax-wrapper .hero__list-item-price{
+    width: 100%;
+    justify-content: space-between;
+  }
+}
 .hero__list--alt {
   display: none;
 }
